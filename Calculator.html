@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculatorApp</title>
+
+    <style>
+        #Calculator_container{
+           display: flex;
+           flex-direction: column;
+           width: fit-content;
+           background-color: rgb(161, 234, 209);
+           align-items: center;
+           border-radius: 12px;
+           padding: 10px;
+           margin: 10px auto;
+        }
+         .Calculator_row{
+            margin: 7px auto;
+         }
+         .Calculator_row button{
+            width: 50px;
+            height: 50px;
+            font-size: 15px;
+            border-radius: 10px;
+            margin: 9px;
+            border:none;
+            background-color: aliceblue;
+            color:rgb(28, 24, 24); 
+         }
+          .Calculator_row button:hover{
+            background-color: rgb(182, 184, 186);
+            cursor:pointer;
+         }
+         #display_area{
+            background-color: aliceblue;
+            width:350px;
+            height: 50px;
+            overflow-x: scroll;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            align-items: center;
+            display: flex;
+            font-size: 30px;
+         }
+    </style>
+</head>
+<body>
+ <div id="Calculator_container"> 
+    <div id="display_area"></div>
+
+    <div class="Calculator_row">
+        <button>C</button>
+        <button>( </button>
+        <button>)</button>
+        <button>/</button>
+    </div>
+
+    <div class="Calculator_row">
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>*</button>
+    </div>
+
+    <div class="Calculator_row">
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>-</button>
+    </div>
+
+    <div class="Calculator_row">
+         <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>+</button>
+    </div>
+
+    <div class="Calculator_row">
+        <button>DEL</button>
+        <button>0</button>
+        <button>.</button>
+        <button>=</button>
+    </div>
+ </div> 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/13.0.3/math.js"
+  integrity="sha512-lAVGwhTndbBUjJlN0Lq4BNuOP0lpuGA9OUCA9bxRZrsehpmkiv8BcYdp91ON3XqJHWmVURGTw1d1W3LCr1k/1g==" 
+  crossorigin="anonymous" 
+  referrerpolicy="no-referrer"></script>
+ 
+ 
+ <script>
+//نحتاج 4 فاكشن عشان تشتغل الاله الحاسبة 
+ 
+//المتغيرات 
+const Calculatorcontainer =document.getElementById('Calculator_container');
+const displayarea =document.getElementById('display_area');
+
+Calculatorcontainer.addEventListener('click', (e) => {
+    if(e.target.nodeName== "BUTTON" ){
+        switch (e.target.textContent){
+            case "C":
+            clear();
+            break;
+
+
+            case "DEL":
+           deleteOneValue();
+            break;
+
+            case "=":
+           evaluate();
+            break;
+
+
+         default :
+         AddtodisplyArea(e.target.textContent);
+        }
+    }
+    
+});
+
+//الفاكشن اللي تحذف كل شي 
+function clear (){
+    displayarea.textContent=" ";
+}
+
+//الفاكشن اللي تضيف قيم الى مربع الادخال 
+function AddtodisplyArea(value){
+    displayarea.textContent=  displayarea.textContent+value;
+
+}
+function deleteOneValue(){
+    let currentContent=displayarea.textContent;
+    displayarea.textContent=currentContent.substring(0,currentContent.length-1);
+
+
+}
+
+function evaluate(){
+    try{
+        let calculation =math.evaluate(displayarea.textContent);
+        displayarea.textContent=calculation;
+    }
+    catch (error){
+  displayarea.textContent='invalid operation';
+  console.error(error);
+
+    }
+}
+ </script>
+</body>
+</html>
