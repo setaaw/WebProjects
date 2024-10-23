@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://kit.fontawesome.com/b4db02e187.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+       <style>
+        * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	font-family: "Poppins", sans-serif;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh; 
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    padding: 10px;
+    display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+.todo-app {
+    width: 100%;
+    max-width:550px;
+    margin: 100px auto 20px ;
+    padding: 40px 30px 70px;
+    border-radius: 1rem; 
+    box-shadow: rgba(0, 0, 0, 0.15) 0rem 0.2rem 0.8rem;
+	background: linear-gradient(to right, #ece9e6, #ffffff);
+}
+
+.todo-app h1 {
+    display: flex;
+    /* margin-bottom: 20px ; */
+   align-items: center;
+   color: orange;
+	margin-bottom: 2rem;
+}
+
+.todo-app i {
+	margin-right: 1rem;
+}
+.todo-app  h1 img{
+    margin-left: 10px ;
+    width: 30px ;
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 40px; 
+   padding-left: 20px;
+   margin-bottom: 25px;
+   background-color: #f5f5f7;
+   border: none;
+
+ 
+}
+input{
+    flex: 1;
+    border: none;
+	outline: none;
+  padding: 10px;
+    background: transparent;
+    font-weight: 15px;
+
+}
+
+button {
+    border-radius: 40px;
+    padding: 15px  50px;
+    border: none;
+    background-color: orange;
+    cursor: pointer;
+    font-weight: 16px;
+	color: #f5f7f8;
+	
+   
+}
+
+ul li {
+	list-style: none;
+	padding: 1rem 0.8rem 1rem 5rem;
+	user-select: none;
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: baseline;
+}
+
+ul li::before {
+	content: "";
+	position: absolute;
+	height: 2.8rem;
+	width: 2.8rem;
+	background-image: url(https://cdn.discordapp.com/attachments/1290843633171566695/1290849999625781269/WhatsApp_Image_2024-10-01_at_17.31.45-removebg-preview.png?ex=6718533e&is=671701be&hm=aa1d95f8791df79f8e92a61f956bd6b3f6a64278e5b5549b4802b8247b2f1850&);
+	background-size: cover;
+	background-position: center;
+	margin: 0rem -4rem;
+}
+
+ul li.checked {
+	color: #555;
+	text-decoration: line-through;
+}
+
+ul li.checked::before {
+	background-image: url(https://cdn.discordapp.com/attachments/1290843633171566695/1290849999395225622/WhatsApp_Image_2024-10-01_at_17.31.44-removebg-preview.png?ex=6718533e&is=671701be&hm=9a79274ecbed0ffa1d653360f8630a7361ac5daba8e0943e06cb69315cd23d5a&);
+}
+
+ul li span {
+    position: absolute;
+    right: 0;
+	top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+	line-height: 4rem;
+	
+}
+ul li span:hover {
+	background: #edeef0;
+}
+
+       </style>
+    </head>
+    
+    
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <h1>To-Do  List 
+                <img src="task.png"  width="50px "></h1>
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add your task">
+            <button onclick="addTask()">+  Add </button>
+            </div>
+            <ul id="list-container">
+                <!-- 			<li class="checked">Task 1</li>
+                <li>Task 2</li> -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        const inputBox = document.getElementById("input-box");
+const listContainer = document.getElementById("list-container");
+
+// this function checks if there's some content in the inputBox and adds a new task in the LI element
+function addTask() {
+	if (inputBox.value === "") {
+		alert("You must write !");
+	} else {
+		let newTask = document.createElement("li");
+		newTask.innerHTML = inputBox.value;
+		listContainer.appendChild(newTask);
+		let span = document.createElement("span");
+		span.innerHTML = "\u00d7";
+		newTask.appendChild(span);
+	}
+	//clean inputBox after adding a new task
+	inputBox.value = "";
+	saveData();
+}
+
+// shows the checked icon when the user clicks on the circle icon of the task and when the user clicks on "x" remove the item from the to-do list
+listContainer.addEventListener("click",function (e) {
+		if (e.target.tagName === "LI") {
+			e.target.classList.toggle("checked");
+			saveData();
+		} else if (e.target.tagName === "SPAN") {
+			e.target.parentElement.remove();
+			saveData();
+		}
+	},
+	false
+);
+
+//when page is refreshed any task is lost
+function saveData() {
+	localStorage.setItem("data", listContainer.innerHTML);
+}
+
+//shows data whenever we open the website again
+function showTask() {
+	listContainer.innerHTML = localStorage.getItem("data");
+}
+showTask();
+
+    </script>
+</body>
+</html>
