@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Quiz App</title>
+    <style>
+         * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+       
+      }
+        body {
+  display: flex;
+  height: 100vh;
+  background-color: #A5B68D ;
+ 
+}
+
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  background-color:#f9f9f9;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.6rem 0.1rem rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  margin: 100px auto ;
+  padding: 30px;
+  
+}
+
+#question-container {
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+#question {
+  text-align: right;
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+#answer-buttons {
+  display: flex;
+  flex-direction: column;
+align-items: flex-end;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+}
+
+input {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 1.5rem;
+  background-color: #798645;
+  color: white;
+  border: none;
+  font-weight: 400;   
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.1s;
+  font-size: 20px;
+} 
+
+
+.btn:hover {
+  background-color: #4a5533;;
+}
+
+.hide {
+  display: none;
+}
+
+#result {
+  margin: 2rem auto;
+}
+
+#question,
+#result {
+  font-size: 1.9rem;
+  font-weight: bold;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <div id="question-container">
+        <h3 id="question">الأسئلة</h3>
+        <div id="answer-buttons"></div>
+      </div>
+      <button id="next-btn" class="btn hide">التالي</button>
+      <div id="result" class="hide"></div>
+      <button id="restart-btn" class="btn hide">الاعادة مرة اخرى</button>
+    </div>
+
+    <script>
+        const questionContainer = document.getElementById("question-container");
+const questionElement = document.getElementById("question");
+const answerButtons = document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-btn");
+const restartButton = document.getElementById("restart-btn");
+const resultDiv = document.getElementById("result");
+
+let shuffledQuestions, currentQuestionIndex, score;
+
+const questions = [
+            {
+            question :"اول من اسلم من الرجال ؟" , 
+            answers:[
+              {text :"ابو بكر الصديق", correct: true},
+              {text :" علي بن ابي طالب", correct: false},
+              {text :"عبدالله بن مسعود", correct: false},
+              {text :"عمر بن الخطاب", correct: false},
+
+            ]
+
+},
+{
+            question :"في أيِ شهر يصوم المسلمون؟" , 
+            answers:[
+              {text: "شهر رجب ", correct: false},
+              {text :"شهر محرم ", correct: false},
+              {text :" شهر ذو القعدة", correct: false},
+              {text :"شهر رمضان ", correct: true},
+
+            ]
+
+},
+
+{
+            question :"كم عدد سور القرآن الكريم؟" , 
+            answers:[
+              {text: "114", correct: true},
+              {text :"100", correct: false},
+              {text :"120", correct: false},
+              {text :"90", correct: false},
+
+            ]
+
+
+},
+{
+            question :"من هو النبي الذي ابتلعه الحوت؟" , 
+            answers:[
+              {text: "موسى عليه السلام ", correct: false},
+              {text :"نوح عليه السلام ", correct: false},
+              {text :"يونس عليه السلام", correct: true},
+              {text :"ابراهيم عليه السلام ", correct: false},
+
+            ]
+
+
+},
+
+{
+            question :"كم عدد أركان الإسلام؟" , 
+            answers:[
+              {text: "10 ", correct: false},
+              {text :"5", correct: true },
+              {text :"4", correct: false},
+              {text :"3", correct: false},
+
+            ]
+
+
+},
+
+{
+            question :"ما هي السورة التي تُعادل ثلث القرآن الكريم؟" , 
+            answers:[
+              {text: "سورة الكافرون", correct: false},
+              {text :"سورة النصر", correct: false},
+              {text :"سورة الفيل", correct: false},
+              {text :"سورة الاخلاص", correct: true},
+
+            ],
+  },
+];
+
+startQuiz();
+
+function startQuiz() {
+  score = 0;
+  questionContainer.style.display = "flex";
+  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  currentQuestionIndex = 0;
+  nextButton.classList.remove("hide");
+  restartButton.classList.add("hide");
+  resultDiv.classList.add("hide");
+  setNextQuestion();
+}
+
+function setNextQuestion() {
+  resetState();
+  showQuestion(shuffledQuestions[currentQuestionIndex]);
+}
+
+function showQuestion(question) {
+  questionElement.innerText = question.question;
+  question.answers.forEach((answer, index) => {
+    const inputGroup = document.createElement("div");
+    inputGroup.classList.add("input-group");
+
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.id = "answer" + index;
+    radio.name = "answer";
+    radio.value = index;
+
+    const label = document.createElement("label");
+    label.htmlFor = "answer" + index;
+    label.innerText = answer.text;
+
+    inputGroup.appendChild(radio);
+    inputGroup.appendChild(label);
+    answerButtons.appendChild(inputGroup);
+  });
+}
+
+function resetState() {
+  while (answerButtons.firstChild) {
+    answerButtons.removeChild(answerButtons.firstChild);
+  }
+}
+
+nextButton.addEventListener("click", () => {
+  const answerIndex = Array.from(
+    answerButtons.querySelectorAll("input")
+  ).findIndex((radio) => radio.checked);
+  if (answerIndex !== -1) {
+    if (shuffledQuestions[currentQuestionIndex].answers[answerIndex].correct) {
+      score++;
+    }
+    currentQuestionIndex++;
+    if (shuffledQuestions.length > currentQuestionIndex) {
+      setNextQuestion();
+    } else {
+      endQuiz();
+    }
+  } else {
+    alert("الرجاء اختيار  إجابة");
+  }
+});
+
+restartButton.addEventListener("click", startQuiz);
+
+function endQuiz() {
+  questionContainer.style.display = "none";
+  nextButton.classList.add("hide");
+  restartButton.classList.remove("hide");
+  resultDiv.classList.remove("hide");
+  resultDiv.innerText = `الدرجة النهائية : ${score} / ${shuffledQuestions.length}`;
+}
+    </script>
+  </body>
+</html>
