@@ -1,0 +1,206 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<!--Get your own code at fontawesome.com-->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>Sign Up </title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+           
+          
+        }
+        body{
+            background-color: #DFF2EB;
+            display: flex;
+      
+        }
+        
+        .container{
+            width: 100%;
+            max-width:650px;
+            background-image: url(weatherbackground.png);
+            opacity: 0.9;
+            background-size: cover;
+            border-radius: 20px;
+            margin: 20px auto;
+            padding: 10px 20px;
+           
+
+        }
+        .row{
+            display: flex;
+            flex-direction: column; 
+            margin-right: 20px  ;
+            margin-top: 20px; 
+            padding-left: 10px  ;
+            width: 100%;
+            color: white;
+            font-weight: 600;
+          
+          
+        }
+        .row h2{
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            font-weight: 800;
+            margin-top: -20px;
+
+        }
+       
+        input{
+            padding: 5px;
+            outline: none;
+            border: none;
+            background-color: #E1D7C6;
+            border-width: medium;
+            margin-bottom: 5px;
+            margin-left: 0;
+            display: flex;
+            border-radius: 10px;
+            width: 200%;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3); 
+        
+   
+        }
+       
+        input:hover{
+            border: 3px solid #000;
+            border-radius: 10px;
+          
+           
+        }
+     
+        .btn{
+           
+             background-color: #E1D7C6;
+             flex: 1;
+             border-radius: 10px ;
+             padding: 10px ;
+            margin-left: 150px;
+             outline: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            margin-bottom: 15px;
+            /* transition-property: all;
+            transition-duration: 2s; */
+            color:  #2d525e; 
+            font-size: 16px;
+            font-weight: 600;
+            
+
+        }
+        .btn:hover{
+            background-color: #2d525e;
+            font-size: 16px;
+            font-weight: 600;
+            color: #E1D7C6;
+          
+        
+        } 
+     
+       
+       h5{
+        font-weight: 600;
+        font-size: 14px;
+        color: #DFF2EB;
+        text-align: center;
+       }
+       
+       h4{
+        font-size: 20px;
+        align-items: end;
+        color: white;
+        
+       }
+       a{
+        color:#000;
+       }
+
+     a:hover{
+      color: red;  
+     
+     }
+
+
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <div class="row">
+            <h2>Create Account</h2>
+
+            <div class="col-sm-4">
+                 <label  for="">  First Name </label> 
+                <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" placeholder="First Name" required  >
+          
+         
+            </div>
+
+
+
+              <div class="col-sm-4">              
+            <label for="">Second Name</label>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" placeholder=" Second  Name" required>
+              </div>
+
+   </div>
+           <div class="row">
+                <div class="col-sm-4">
+            <label for="">Phone Number</label>
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <input type="number"  placeholder="Phone Number" required>
+         </div>
+        
+         <div class="col-sm-4">
+            <label for="">Email</label>
+            <i class="fa fa-envelope"></i> 
+            <input type="email" placeholder=" Email" required>
+            </div>
+            
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <label for="">Password </label>
+        <i class="fa fa-unlock-alt" ></i>
+        <input type="password" placeholder=" Password" required>
+       
+</div>
+
+<div class="col-sm-4">
+     
+    <label for="">Confirm Password 
+    <i class="fa fa-key" aria-hidden="true"></i>
+    <input type="password"  placeholder="Re-type password" required>
+</div>
+
+</div>
+
+<div class="row">
+            <button class="btn " type="submit"> Register 
+            </button>
+
+            <h5>Already have an account?<a href="login.html"> Login</a> </h5> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
