@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<!--Get your own code at fontawesome.com-->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Login Form</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+           
+          
+        }
+        body{
+            background-color: #DFF2EB;
+            
+          
+        }
+        
+        .container{
+            width: 100%;
+            max-width:600px;
+            background-image: url(weatherbackground.png);
+            opacity: 0.9;
+            background-size: cover;
+           border-radius: 20px;
+           margin: 90px auto;
+           padding: 30px 20px;
+
+        }
+        .login{
+            display: flex;
+            flex-direction: column; 
+            justify-content: space-between;
+            gap: 4px;
+            margin: 10px  auto  ; 
+            padding: 10px  ;
+
+        }
+        .login a{
+            font-size: 12px;
+            font-weight: 550;
+           display: block;
+           text-align: right;
+           padding-right: 50px;
+           margin-bottom: 10px;
+           margin-top: 20px;
+           color: black;
+           
+          
+           
+       
+        }
+        .login img{
+            width: 20%;
+           margin-left: 230px;
+           margin-top: -40px;
+           opacity: 0.7;
+
+         
+        }
+        input{
+            flex: 1;
+            padding: 5px;
+            outline: none;
+            border: none;
+            background-color: #E1D7C6;
+            margin-top: 25px; 
+            margin-left: 60px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            width: 80%;
+            height: 50%;
+            border-width: medium;
+            margin-bottom: 10px;
+
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3); 
+           
+           
+        }
+       
+        input:hover{
+            border: 3px solid #000;
+            border-radius: 10px;
+        }
+
+   
+        .btn{
+            background-color: #E1D7C6;
+            color:  #2d525e; 
+             flex: 1;
+             border-radius: 20px ;
+             padding: 10px ;
+            margin-left: 200px;
+             outline: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+            margin-bottom: 15px;
+            transition-property: all;
+            transition-duration: 1s;
+            font-size: 16px;
+            font-weight: 600;
+
+        }
+        .btn2{
+            background-color: #E1D7C6;
+            color:  #2d525e; 
+             flex: 1;
+             border-radius: 20px ;
+             padding: 10px ;
+            margin-left: 200px;
+             outline: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+            margin-bottom: 15px;
+            transition-property: all;
+            transition-duration: 1s;
+            font-size: 16px;
+            font-weight: 600;
+
+        }
+        .btn:hover{
+
+            background-color: #2d525e;
+            font-size: 16px;
+            font-weight: 600;
+            color: #E1D7C6;
+            width: 200px;
+        
+        } 
+        .btn2:hover{
+            background-color: #2d525e;
+            font-size: 16px;
+            font-weight: 600;
+            color: #E1D7C6;
+            width: 200px;
+        
+        } 
+       .user i{
+        
+          justify-content: flex-end;
+          align-items: end;
+          display: flex;
+          margin:  -30px 60px  5px 5px; 
+         opacity: 0.4;
+        
+       
+        }
+        .lock i{
+        
+        justify-content: flex-end;
+        align-items: end;
+        display: flex;
+        margin:  -30px 60px   ; 
+       opacity: 0.4;
+     
+      }
+      h5{
+        font-weight: 600;
+        font-size: 14px;
+        color: #DFF2EB;
+        text-align: center;
+        margin-top: -10px;
+        margin-left: 30px;
+   
+       }
+       h5 .signup{
+        text-align: center;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 14px;
+        color: #000;
+       }
+       a:hover{
+      color: red;  
+     
+     }
+
+    </style>
+</head>
+<body>
+    <form>
+   <div class="container">
+    <div class="login">
+        <img src="user.png" alt=""> 
+
+     
+        <div class="user"> 
+             <input  class="fa fa-user" class="input-box" type="email" placeholder="Email Address" required >
+         <i class="fa fa-envelope"></i> </div> 
+
+        
+       
+     <div class="lock"> <input  class="input-box"  type="password" placeholder=" Password" required>
+        <i class="fa fa-unlock-alt" ></i> </div> 
+     
+        <br>
+        <a href="#"> Forgot Password ?</a>
+        <button class="btn" type="submit"> Login</button>
+        <h5>Don't have an account?<a href="signUp.html" class="signup"> Sign up</a> </h5> 
+        <!-- <button class="btn2" type="submit"> Sign up</button> -->
+      
+       
+    </div>
+   </div> 
+   </form>
+</body>
+</html>
